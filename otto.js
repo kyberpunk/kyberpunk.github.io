@@ -30,8 +30,8 @@
     // Status reporting code
     // Use this to report missing hardware, plugin or unsupported browser
     ext._getStatus = function() {
-		getData("connection", (result, data) => deviceConnected = result && data == "true")
-        return deviceConnected ? {status: 2, msg: 'Ready'} : {status: 2, msg: 'Device not available'};
+		getData("connection", (result, data) => deviceConnected = result && data == "True")
+        return deviceConnected ? {status: 2, msg: 'Ready'} : {status: 0, msg: 'Device not available'};
     };
 
     ext.start_command = function(callback) {
