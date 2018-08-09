@@ -24,6 +24,10 @@
     ext.start = function(callback) {
 		sendCommand("start", result => callback());
     };
+	
+	ext.dock = function(callback) {
+		sendCommand("dock", result => callback());
+    };
 
     // Block and block menu descriptions
     var descriptor = {
