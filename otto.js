@@ -8,7 +8,13 @@
         return {status: 2, msg: 'Ready'};
     };
 
-    ext.my_first_block = function() {
+    ext.my_first_block = function(callback) {
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", "http://localhost:12345/start");
+		xhr.send();
+		xhr.onreadystatechange = (e) =>	{
+			callback();
+		}
         // Code that gets executed when the block is run
     };
 
@@ -16,7 +22,7 @@
     var descriptor = {
         blocks: [
             // Block type, block name, function name
-            [' ', 'my first block', 'my_first_block'],
+            ['w', 'my first block', 'my_first_block'],
         ]
     };
 
