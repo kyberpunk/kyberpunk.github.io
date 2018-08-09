@@ -8,7 +8,7 @@
 			var data = xhr.responseText;
 			callback(xhr.status == 201);
 		}
-		xhr.open("POST", url + command);
+		xhr.open("POST", url + "commands/" + command);
 		xhr.send();
 	}
 	
