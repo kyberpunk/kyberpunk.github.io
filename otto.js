@@ -38,16 +38,14 @@
 		var ts = (Date.now() / 1000) | 0;
 		if (timestamp + 3 < ts)	{
 			timestamp = ts;
-		} else {
-			return;
-		}	
-		getData("connection", (result, data) => { 
+			getData("connection", (result, data) => { 
 				deviceConnected = result && data == "True";
 				serviceAvailable = true;
 			}, () => { 
 				deviceConnected = false;
 				serviceAvailable = false;
 			});
+		}		
 		if (!serviceAvailable) return {status: 0, msg: 'Service not available'};
         return deviceConnected ? {status: 2, msg: 'Ready'} : {status: 1, msg: 'Device not available'};
     };
