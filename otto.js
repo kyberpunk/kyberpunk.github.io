@@ -3,7 +3,7 @@
 	
 	function sendCommand(command, callback) {
 		var xhr = new XMLHttpRequest();		
-		xhr.open("POST", url + "commands/" + command);
+		xhr.open("POST", url + "commands/" + command, true);
 		xhr.onload = function () {
 			var status = xhr.status;
 			var data = xhr.responseText;
