@@ -21,11 +21,11 @@
         return {status: 2, msg: 'Ready'};
     };
 
-    ext.start = function(callback) {
+    ext.start_command = function(callback) {
 		sendCommand("start", result => callback());
     };
 	
-	ext.dock = function(callback) {
+	ext.dock_command = function(callback) {
 		sendCommand("dock", result => callback());
     };
 
@@ -33,8 +33,8 @@
     var descriptor = {
         blocks: [
             // Block type, block name, function name
-            ['w', 'probuď se', 'start'],
-			['w', 'srovnej se', 'dock'],
+            ['w', 'probuď se', 'start_command'],
+			['w', 'srovnej se', 'dock_command'],
         ]
     };
 
