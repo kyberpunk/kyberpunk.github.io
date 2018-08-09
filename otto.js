@@ -58,7 +58,11 @@
     };
 	
 	ext.go_command = function(direction) {
-		
+		if (direction == 'dopředu') {
+			sendCommand("jdi-dopredu", result => callback());
+		} else {
+			sendCommand("jdi-dozadu", result => callback());
+		}
 	};
 
     // Block and block menu descriptions
