@@ -1,4 +1,17 @@
 (function(ext) {
+	var url = 'http://localhost:12345/';
+	
+	function sendCommand(command, callback) {
+		var xhr = new XMLHttpRequest();
+		xhr.onload = function () {
+			var status = xhr.status;
+			var data = xhr.responseText;
+			callback(xhr.status == 201);
+		}
+		xhr.open("POST", url + command);
+		xhr.send();
+	}
+	
     // Cleanup function when the extension is unloaded
     ext._shutdown = function() {};
 
@@ -9,15 +22,7 @@
     };
 
     ext.start = function(callback) {
-		var xhr = new XMLHttpRequest();
-		request.onload = function () {
-			var status = request.status;
-			var data = request.responseText;
-			callback();
-		}
-		xhr.open("POST", "http://localhost:12345/start");
-		xhr.send();
-        // Code that gets executed when the block is run
+		sendCommand("start", (result) => callback());
     };
 
     // Block and block menu descriptions
@@ -25,9 +30,10 @@
         blocks: [
             // Block type, block name, function name
             ['w', 'probuď se', 'start'],
+			['w', 'srovnej se', 'dock'],
         ]
     };
 
     // Register the extension
-    ScratchExtensions.register('My first extension', descriptor, ext);
+    ScratchExtensions.register('Otto', descriptor, ext);
 })({});
