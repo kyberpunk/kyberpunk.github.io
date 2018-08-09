@@ -70,8 +70,8 @@
 			['w', 'jdi %m.direction', 'go_command', 'dopředu'],			
         ],
 		menus: {
-        motorDirection: ['dopředu', 'dozadu'],
-    },
+			direction: ['dopředu', 'dozadu'],
+		},
     };
 
     // Register the extension
