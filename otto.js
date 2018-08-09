@@ -1,6 +1,7 @@
 (function(ext) {
 	var url = 'http://localhost:12345/';
 	var deviceConnected = false;
+	var timestamp = 0;
 	
 	function sendCommand(command, callback) {
 		var xhr = new XMLHttpRequest();		
@@ -21,7 +22,8 @@
 			var data = xhr.responseText;
 			callback(status == 200, data);
 		}
-		xhr.onerror = () => errorCallback();
+		xhr.addEventListener("error", () => errorCallback());
+		xhr.timeout = 3000;
 		xhr.send();
 	}
 	
@@ -31,6 +33,12 @@
     // Status reporting code
     // Use this to report missing hardware, plugin or unsupported browser
     ext._getStatus = function() {
+		var ts = new Date().getTime() / 1000;
+		if (timestamp + 2 < ts)	{
+			timestamp = ts;
+		} else {
+			return;
+		}			
 		getData("connection", (result, data) => deviceConnected = result && data == "True", () => deviceConnected = false);
         return deviceConnected ? {status: 2, msg: 'Ready'} : {status: 0, msg: 'Device not available'};
     };
