@@ -57,7 +57,7 @@
 		sendCommand("srovnejse", result => callback());
     };
 	
-	ext.go_command = function(direction) {
+	ext.go_command = function(direction, callback) {
 		if (direction == 'dopředu') {
 			sendCommand("jdi-dopredu", result => callback());
 		} else {
