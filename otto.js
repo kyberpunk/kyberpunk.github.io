@@ -13,7 +13,7 @@
 		xhr.send();
 	}
 	
-	function getData(resource, callback) {
+	function getData(resource, callback, errorCallback) {
 		var xhr = new XMLHttpRequest();		
 		xhr.open("GET", url + resource, true);
 		xhr.onload = function () {
@@ -21,6 +21,7 @@
 			var data = xhr.responseText;
 			callback(status == 200, data);
 		}
+		xhr.onerror = () => errorCallback();
 		xhr.send();
 	}
 	
@@ -30,7 +31,7 @@
     // Status reporting code
     // Use this to report missing hardware, plugin or unsupported browser
     ext._getStatus = function() {
-		getData("connection", (result, data) => deviceConnected = result && data == "True")
+		getData("connection", (result, data) => deviceConnected = result && data == "True", () => deviceConnected = false);
         return deviceConnected ? {status: 2, msg: 'Ready'} : {status: 0, msg: 'Device not available'};
     };
 
