@@ -2,13 +2,13 @@
 	var url = 'http://localhost:12345/';
 	
 	function sendCommand(command, callback) {
-		var xhr = new XMLHttpRequest();
+		var xhr = new XMLHttpRequest();		
+		xhr.open("POST", url + "commands/" + command);
 		xhr.onload = function () {
 			var status = xhr.status;
 			var data = xhr.responseText;
-			callback(xhr.status == 201);
+			callback(status == 201);
 		}
-		xhr.open("POST", url + "commands/" + command);
 		xhr.send();
 	}
 	
@@ -22,7 +22,7 @@
     };
 
     ext.start = function(callback) {
-		sendCommand("start", (result) => callback());
+		sendCommand("start", result => callback());
     };
 
     // Block and block menu descriptions
