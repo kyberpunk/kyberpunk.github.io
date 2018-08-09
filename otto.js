@@ -1,5 +1,6 @@
 (function(ext) {
 	var url = 'http://localhost:12345/';
+	var deviceConnected = false;
 	
 	function sendCommand(command, callback) {
 		var xhr = new XMLHttpRequest();		
@@ -12,13 +13,25 @@
 		xhr.send();
 	}
 	
+	function getData(resource, callback) {
+		var xhr = new XMLHttpRequest();		
+		xhr.open("GET", url + resource, true);
+		xhr.onload = function () {
+			var status = xhr.status;
+			var data = xhr.responseText;
+			callback(status == 200, data);
+		}
+		xhr.send();
+	}
+	
     // Cleanup function when the extension is unloaded
     ext._shutdown = function() {};
 
     // Status reporting code
     // Use this to report missing hardware, plugin or unsupported browser
     ext._getStatus = function() {
-        return {status: 2, msg: 'Ready'};
+		getData("connection", (result, data) => deviceConnected = result && data == "true")
+        return deviceConnected ? {status: 2, msg: 'Ready'} : {status: 2, msg: 'Device not available'};
     };
 
     ext.start_command = function(callback) {
