@@ -35,7 +35,7 @@
     // Use this to report missing hardware, plugin or unsupported browser
     ext._getStatus = function() {
 		
-		var ts = new Date().getTime() / 1000;
+		var ts = (Date.now() / 1000) | 0;
 		if (timestamp + 3 < ts)	{
 			timestamp = ts;
 		} else {
