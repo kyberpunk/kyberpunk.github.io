@@ -1,6 +1,7 @@
 (function(ext) {
 	var url = 'http://localhost:12345/';
 	var deviceConnected = false;
+	var serviceAvailable = false;
 	var timestamp = 0;
 	
 	function sendCommand(command, callback) {
@@ -33,14 +34,22 @@
     // Status reporting code
     // Use this to report missing hardware, plugin or unsupported browser
     ext._getStatus = function() {
+		
 		var ts = new Date().getTime() / 1000;
-		if (timestamp + 2 < ts)	{
+		if (timestamp + 3 < ts)	{
 			timestamp = ts;
 		} else {
 			return;
-		}			
-		getData("connection", (result, data) => deviceConnected = result && data == "True", () => deviceConnected = false);
-        return deviceConnected ? {status: 2, msg: 'Ready'} : {status: 0, msg: 'Device not available'};
+		}	
+		getData("connection", (result, data) => { 
+				deviceConnected = result && data == "True";
+				serviceAvailable = true;
+			}, () => { 
+				deviceConnected = false;
+				serviceAvailable = false;
+			});
+		if (!serviceAvailable) return {status: 0, msg: 'Service not available'};
+        return deviceConnected ? {status: 2, msg: 'Ready'} : {status: 1, msg: 'Device not available'};
     };
 
     ext.start_command = function(callback) {
