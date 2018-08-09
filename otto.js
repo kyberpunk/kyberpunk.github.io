@@ -33,8 +33,7 @@
 
     // Status reporting code
     // Use this to report missing hardware, plugin or unsupported browser
-    ext._getStatus = function() {
-		
+    ext._getStatus = function() {		
 		var ts = (Date.now() / 1000) | 0;
 		if (timestamp + 3 < ts)	{
 			timestamp = ts;
@@ -51,12 +50,16 @@
     };
 
     ext.start_command = function(callback) {
-		sendCommand("start", result => callback());
+		sendCommand("probudse", result => callback());
     };
 	
 	ext.dock_command = function(callback) {
-		sendCommand("dock", result => callback());
+		sendCommand("srovnejse", result => callback());
     };
+	
+	ext.go_command = function(direction) {
+		
+	};
 
     // Block and block menu descriptions
     var descriptor = {
@@ -64,7 +67,11 @@
             // Block type, block name, function name
             ['w', 'probuď se', 'start_command'],
 			['w', 'srovnej se', 'dock_command'],
-        ]
+			['w', 'jdi %m.direction', 'go_command', 'dopředu'],			
+        ],
+		menus: {
+        motorDirection: ['dopředu', 'dozadu'],
+    },
     };
 
     // Register the extension
