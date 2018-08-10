@@ -33,7 +33,7 @@
 	}
 	
 	function getSide(side) {
-		return direction == 'doprava' ? 'doprava' : 'doleva';
+		return side == 'doprava' ? 'doprava' : 'doleva';
 	}
 	
     // Cleanup function when the extension is unloaded
