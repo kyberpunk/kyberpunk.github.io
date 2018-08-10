@@ -28,6 +28,14 @@
 		xhr.send();
 	}
 	
+	function getDirection(direction) {
+		return direction == 'dopředu' ? 'dopredu' : 'dozadu';
+	}
+	
+	function getSide(side) {
+		return direction == 'doprava' ? 'doprava' : 'doleva';
+	}
+	
     // Cleanup function when the extension is unloaded
     ext._shutdown = function() {};
 
@@ -58,11 +66,27 @@
     };
 	
 	ext.go_command = function(direction, callback) {
-		if (direction == 'dopředu') {
-			sendCommand("jdi-dopredu", result => callback());
-		} else {
-			sendCommand("jdi-dozadu", result => callback());
-		}
+		sendCommand("jdi-" + getDirection(direction), result => callback());
+	};
+	
+	ext.turn_command = function(side, callback) {
+		sendCommand("zatoc-" + getSide(side), result => callback());
+	};
+	
+	ext.bend_command = function(side, callback) {
+		sendCommand("nahnise-" + getSide(side), result => callback());
+	};
+	
+	ext.jump_command = function(callback) {
+		sendCommand("skoc", result => callback());
+    };
+	
+	ext.shake_command = function(side, callback) {
+		sendCommand("zatresnohou-" + getSide(side), result => callback());
+	};
+	
+	ext.moonwalk_command = function(side, callback) {
+		sendCommand("moonwalk-" + getSide(side), result => callback());
 	};
 
     // Block and block menu descriptions
@@ -71,10 +95,16 @@
             // Block type, block name, function name
             ['w', 'probuď se', 'start_command'],
 			['w', 'srovnej se', 'dock_command'],
-			['w', 'jdi %m.direction', 'go_command', 'dopředu'],			
+			['w', 'jdi %m.direction', 'go_command', 'dopředu'],
+			['w', 'zatoč %m.side', 'turn_command', 'doprava'],
+			['w', 'nahni se %m.side', 'bend_command', 'doprava'],
+			['w', 'skoč', 'jump_command'],
+			['w', 'zatřes nohou %m.side', 'shake_command', 'doprava'],
+			['w', 'moonwalk %m.side', 'moonwalk_command', 'doprava'],
         ],
 		menus: {
 			direction: ['dopředu', 'dozadu'],
+			side: ['doprava', 'doleva'],
 		},
     };
 
