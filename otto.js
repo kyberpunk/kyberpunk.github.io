@@ -89,7 +89,7 @@
 		sendCommand("moonwalk-" + getSide(side), result => callback());
 	};
 	
-	ext.get_distance = function(lessMore, distance, callback) {
+	ext.get_distance = function(callback) {
 		var distance = getData("distance", (result, data) => callback(parseInt(data)));
 	};
 
