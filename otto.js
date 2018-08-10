@@ -41,7 +41,7 @@
 			case 'šťastný':
 				return 'stastny';
 			case 'velmi šťastný':
-				return 'velmistastny';
+				return 'vstastny';
 			case 'smutný':
 				return 'smutny';
 			case 'naštvaný':
@@ -66,7 +66,7 @@
 			case 'šťastný':
 				return 'stastny';
 			case 'velmi šťastný':
-				return 'velmistastny';
+				return 'vstastny';
 			case 'smutný':
 				return 'smutny';
 			case 'připojený':
