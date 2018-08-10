@@ -61,6 +61,33 @@
 		}
 	}
 	
+	function getSound(sound) {
+		switch (sound) {
+			case 'šťastný':
+				return 'stastny';
+			case 'velmi šťastný':
+				return 'velmistastny';
+			case 'smutný':
+				return 'smutny';
+			case 'připojený':
+				return 'pripojeny';
+			case 'odpojený':
+				return 'odpojeny';
+			case 'překvapený':
+				return 'prekvapeny';
+			case 'přítulný':
+				return 'pritulny';
+			case 'ohooh':
+				return 'ohooh';
+			case 'spánek':
+				return 'spanek';
+			case 'zmatený':
+				return 'zmateny';
+			case 'prd':
+				return 'prd';
+		}
+	}
+	
     // Cleanup function when the extension is unloaded
     ext._shutdown = function() {};
 
@@ -121,6 +148,10 @@
 	ext.gesture_command = function(gesture, callback) {
 		sendCommand("gesto-" + getGesture(gesture), result => callback());
 	};
+	
+	ext.sound_command = function(sound, callback) {
+		sendCommand("zvuk-" + getSound(sound), result => callback());
+	};
 
     // Block and block menu descriptions
     var descriptor = {
@@ -136,11 +167,13 @@
 			['w', 'moonwalk %m.side', 'moonwalk_command', 'doprava'],
 			['R', 'vzdálenost', 'get_distance'],
 			['w', 'udělej gesto %m.gesture', 'gesture_command', 'šťastný'],
+			['w', 'udělej zvuk %m.sound', 'sound_command', 'šťastný'],
         ],
 		menus: {
 			direction: ['dopředu', 'dozadu'],
 			side: ['doprava', 'doleva'],
 			gesture: ['šťastný', 'velmi šťastný', 'smutný', 'naštvaný', 'zklamaný', 'zklamaný', 'zmatený', 'zamilovaný', 'víťezství', 'spánek', 'podrážďěný'],
+			sound: ['šťastný', 'velmi šťastný', 'smutný', 'připojený', 'odpojený', 'překvapený', 'přítulný', 'ohooh', 'spánek', 'zmatený', 'prd'],
 		},
     };
 
