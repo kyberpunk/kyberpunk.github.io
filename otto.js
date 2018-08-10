@@ -90,7 +90,7 @@
 	};
 	
 	ext.get_distance = function(lessMore, distance, callback) {
-		return true;
+		var distance = getData("distance", (result, data) => callback(parseInt(data)));
 	};
 
     // Block and block menu descriptions
@@ -105,13 +105,11 @@
 			['w', 'skoč', 'jump_command'],
 			['w', 'zatřes nohou %m.side', 'shake_command', 'doprava'],
 			['w', 'moonwalk %m.side', 'moonwalk_command', 'doprava'],
-			['R', 'vzdálenost %m.lessMore %n', 'get_distance', 'větší než', 10],
+			['R', 'vzdálenost', 'get_distance'],
         ],
 		menus: {
 			direction: ['dopředu', 'dozadu'],
 			side: ['doprava', 'doleva'],
-			lessMore: ['větší než', 'menší než'],
-			eNe: ['rovná se','nerovná se']
 		},
     };
 
