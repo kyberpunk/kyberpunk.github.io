@@ -88,6 +88,10 @@
 	ext.moonwalk_command = function(side, callback) {
 		sendCommand("moonwalk-" + getSide(side), result => callback());
 	};
+	
+	ext.get_distance = function(lessMore, distance, callback) {
+		return true;
+	};
 
     // Block and block menu descriptions
     var descriptor = {
@@ -101,10 +105,13 @@
 			['w', 'skoč', 'jump_command'],
 			['w', 'zatřes nohou %m.side', 'shake_command', 'doprava'],
 			['w', 'moonwalk %m.side', 'moonwalk_command', 'doprava'],
+			['R', 'vzdálenost %m.lessMore %n', 'get_distance', 'větší než', 10],
         ],
 		menus: {
 			direction: ['dopředu', 'dozadu'],
 			side: ['doprava', 'doleva'],
+			lessMore: ['větší než', 'menší než'],
+			eNe: ['rovná se','nerovná se']
 		},
     };
 
