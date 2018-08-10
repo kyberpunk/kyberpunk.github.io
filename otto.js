@@ -36,6 +36,31 @@
 		return side == 'doprava' ? 'doprava' : 'doleva';
 	}
 	
+	function getGesture(gesture) {
+		switch (gesture) {
+			case 'šťastný':
+				return 'stastny';
+			case 'velmi šťastný':
+				return 'velmistastny';
+			case 'smutný':
+				return 'smutny';
+			case 'naštvaný':
+				return 'nastvany';
+			case 'zklamaný':
+				return 'zklamany';
+			case 'zmatený':
+				return 'zmateny';
+			case 'zamilovaný':
+				return 'zamilovany';
+			case 'víťezství':
+				return 'vitezstvi';
+			case 'spánek':
+				return 'spanek';
+			case 'podrážďěný':
+				return 'podrazdeny';
+		}
+	}
+	
     // Cleanup function when the extension is unloaded
     ext._shutdown = function() {};
 
@@ -92,6 +117,10 @@
 	ext.get_distance = function(callback) {
 		var distance = getData("distance", (result, data) => callback(parseInt(data)));
 	};
+	
+	ext.gesture_command = function(gesture, callback) {
+		sendCommand("gesto-" + getGesture(gesture), result => callback());
+	};
 
     // Block and block menu descriptions
     var descriptor = {
@@ -106,10 +135,12 @@
 			['w', 'zatřes nohou %m.side', 'shake_command', 'doprava'],
 			['w', 'moonwalk %m.side', 'moonwalk_command', 'doprava'],
 			['R', 'vzdálenost', 'get_distance'],
+			['w', 'udělej gesto %m.gesture', 'gesture_command', 'šťastný'],
         ],
 		menus: {
 			direction: ['dopředu', 'dozadu'],
 			side: ['doprava', 'doleva'],
+			gesture: ['šťastný', 'velmi šťastný', 'smutný', 'naštvaný', 'zklamaný', 'zklamaný', 'zmatený', 'zamilovaný', 'víťezství', 'spánek', 'podrážďěný'],
 		},
     };
 
