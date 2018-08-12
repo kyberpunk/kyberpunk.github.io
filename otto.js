@@ -172,7 +172,7 @@
 		menus: {
 			direction: ['dopředu', 'dozadu'],
 			side: ['doprava', 'doleva'],
-			gesture: ['šťastný', 'velmi šťastný', 'smutný', 'naštvaný', 'zklamaný', 'zklamaný', 'zmatený', 'zamilovaný', 'víťezství', 'spánek', 'podrážďěný'],
+			gesture: ['šťastný', 'velmi šťastný', 'smutný', 'naštvaný', 'zklamaný', 'zmatený', 'zamilovaný', 'víťezství', 'spánek', 'podrážďěný'],
 			sound: ['šťastný', 'velmi šťastný', 'smutný', 'připojený', 'odpojený', 'překvapený', 'přítulný', 'ohooh', 'spánek', 'zmatený', 'prd'],
 		},
     };
