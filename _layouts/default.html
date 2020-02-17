@@ -14,7 +14,7 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1><a href="{{ "/" | absolute_url }}">Vit Holasek</a></h1>
+        <h1><a href="{{ "/" | absolute_url }}">{{ site.name }}</a></h1>
         
         {% if site.logo %}
           <img src="{{site.logo | relative_url}}" alt="Profile image" />
@@ -24,7 +24,7 @@
 
         <p class="view">
 		  <a href="{{ site.github.owner_url }}">GitHub Profile</a><br/>
-		  <a href="https://linkedin.com/in/vit-holasek">LinkedIn Profile</a>
+		  <a href="{{ site.linkedin }}">LinkedIn Profile</a>
 		</p>
 
         {% if site.show_downloads %}
