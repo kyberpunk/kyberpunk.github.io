@@ -16,7 +16,9 @@
       <header>
         <h1><a href="{{ "/" | absolute_url }}">Vit Holasek</a></h1>
         
-        <img src="img/12064920.jpg" alt="Personal photography" />
+        {% if site.logo %}
+          <img src="{{site.logo | relative_url}}" alt="Profile image" />
+        {% endif %}
 
         <p>Personal site</p>
 
