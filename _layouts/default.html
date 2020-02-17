@@ -16,14 +16,14 @@
       <header>
         <h1><a href="{{ "/" | absolute_url }}">Vit Holasek</a></h1>
         
-        {% if site.logo %}
-          <img src="img/12064920.jpg" alt="Personal photography" />
-        {% endif %}
+        <img src="img/12064920.jpg" alt="Personal photography" />
 
         <p>Personal site</p>
 
-        <p class="view"><a href="{{ site.github.owner_url }}">GitHub Profile</a></p>
-		<p class="view"><a href="www.linkedin.com/in/vit-holasek">LinkedIn Profile</a></p>
+        <p class="view">
+		  <a href="{{ site.github.owner_url }}">GitHub Profile</a><br/>
+		  <a href="www.linkedin.com/in/vit-holasek">LinkedIn Profile</a>
+		</p>
 
         {% if site.show_downloads %}
         <ul class="downloads">
